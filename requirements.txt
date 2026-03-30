@@ -1,0 +1,48 @@
+# ══════════════════════════════════════════════════════════════════
+#  Multimodal Crime / Incident Report Analyzer — Requirements
+#  3 Modalities: PDF · Audio · Text NLP
+#  Group of 2 — COMP 4XXX Final Assignment
+# ══════════════════════════════════════════════════════════════════
+
+# ── Core AI / LLM ──────────────────────────────────────────────────────────────
+openai>=1.0.0                  # GPT-4o structured extraction + Whisper API (audio)
+
+# ── Modality 1 — PDF Processor ─────────────────────────────────────────────────
+pdfplumber>=0.10.0             # Text-based PDF extraction + table parsing
+Pillow>=10.0.0                 # Image pre-processing for OCR pipeline
+
+# PDF OCR pipeline (scanned / image-based PDFs):
+pdf2image>=1.16.0              # Converts PDF pages → PIL Images (requires poppler)
+pytesseract>=0.3.10            # Python wrapper for Tesseract OCR engine
+
+# System dependencies (install separately):
+#   Linux  : sudo apt-get install tesseract-ocr poppler-utils
+#   macOS  : brew install tesseract poppler
+#   Windows: https://github.com/UB-Mannheim/tesseract/wiki
+#            https://github.com/oschwartz10612/poppler-windows
+
+# ── Modality 2 — Audio Transcriber ─────────────────────────────────────────────
+openai-whisper>=20231117       # Local Whisper model (offline fallback)
+torch>=2.0.0                   # Required by local Whisper
+
+# ── Modality 3 — Text NLP Analyzer ─────────────────────────────────────────────
+spacy>=3.7.0                   # Named Entity Recognition (NER)
+# After install run: python -m spacy download en_core_web_sm
+transformers>=4.35.0           # DistilBERT sentiment analysis
+# torch already listed above
+
+# ── Data Handling ───────────────────────────────────────────────────────────────
+pandas>=2.1.0
+numpy>=1.24.0
+
+# ── Utilities ───────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+
+# ── Dashboard ───────────────────────────────────────────────────────────────────
+streamlit>=1.30.0
+plotly>=5.18.0
+
+# ── Notebook Support ────────────────────────────────────────────────────────────
+jupyter>=1.0.0
+ipykernel>=6.25.0
